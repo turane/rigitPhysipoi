@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="ja">
+<head>
+<title>rigidPhysipoi</title>
+<meta charset="UTF-8">
+</head>
+<body>
+	<h1>rigidPhysipoi</h1>
+	<p>剛体の物理演算が行われてるっぽいオブジェクトを生成することができるライブラリです。</p>
+	<p>これらのオブジェクトはユーザーに自由な描画を行ってもらうために void display を実装していません。extendsするかどうにかするかして自由な描画を行ってください。</p>
+
+	<p></p>
+	<hr>
+	<p></p>
+
+
+	<h2>Edge</h2>
+	<p>用途：壁、床、棒</p>
+	<p>棒の長さを0で生成しようとすると PhysipoiException が throw されます</p>
+
+	<table border="1" cellpadding="3" cellspacing="0" width="100%">
+	<tbody><tr bgcolor="#CCCCFF">
+	<th colspan="2" align="left"><font size="+2">
+	<b>コンストラクタの概要</b></font></th>
+	</tr>
+	<tr bgcolor="white">
+	<td><b>Edge</b>(PVector location, float angle, float length)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;始点の座標と、Edgeの角度と長さを指定してEdgeを生成します</td>
+	</tr>
+	<tr bgcolor="white">
+	<td><b>Edge</b>(PVector location, PVector to)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;始点と終点を指定してEdgeを生成します</td>
+	</tr>
+	</tbody></table>
+
+	<p></p>
+
+	<table border="1" cellpadding="3" cellspacing="0" width="100%">
+	<tbody><tr bgcolor="#CCCCFF">
+	<th colspan="2" align="left"><font size="+2">
+	<b>メソッドの概要</b></font></th>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">abstract void</font></td>
+	<td><b>display</b>(float angle)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edgeを描画します。中身は空ですが、必ずOverrideして使ってください</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">void</font></td>
+	<td><b>setAngle</b>(float angle)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edgeの角度を変更します</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">float</font></td>
+	<td><b>getAngle</b>(float angle)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edgeの角度を取得します</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">void</font></td>
+	<td><b>getLength</b>(float angle)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edgeの長さを取得します</td>
+	</tr>
+	</tbody></table>
+
+	<p></p>
+	<hr>
+	<p></p>
+
+	<h2>Sphere</h2>
+	<p>用途：弾、球、玉</p>
+	<p>球の重量を0で生成しようとすると PhysipoiException が throw されます</p>
+	<p>球の反発係数の初期値は0.8です</p>
+
+	<table border="1" cellpadding="3" cellspacing="0" width="100%">
+	<tbody><tr bgcolor="#CCCCFF">
+	<th colspan="2" align="left"><font size="+2">
+	<b>コンストラクタの概要</b></font></th>
+	</tr>
+	<tr bgcolor="white">
+	<td><b>Sphere</b>(float x, float y, float mass, float radius)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;座標と重量、半径を指定して生成します</td>
+	</tr>
+	<tr bgcolor="white">
+	</tr>
+	</tbody></table>
+
+	<p></p>
+
+	<table border="1" cellpadding="3" cellspacing="0" width="100%">
+	<tbody><tr bgcolor="#CCCCFF">
+	<th colspan="2" align="left"><font size="+2">
+	<b>メソッドの概要</b></font></th>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">abstract void</font></td>
+	<td><b>display</b>(float angle)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edgeを描画します。中身は空ですが、必ずOverrideして使ってください</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">void</font></td>
+	<td><b>applyForce</b>(PVector force)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;力を加えます</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">void</font></td>
+	<td><b>setBound</b>(float boundness)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;反発係数を設定します。0以下の値を設定した場合PhysipoiException がthrowされます</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">void</font></td>
+	<td><b>setVelocity</b>(float sx, float sy)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;速度を設定します</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">void</font></td>
+	<td><b>setGravity</b>(float sx, float sy)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重力加速度を変更します。デフォルト値は0.098です。</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">void</font></td>
+	<td><b>update</b>()
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加速度を速度に、速度を座標に足します。</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">boolean</font></td>
+	<td><b>checkEdges</b>(Edge edge)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edgeとのあたり判定を処理します。あたっていた場合はtrueを返します。</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">boolean</font></td>
+	<td><b>contains</b>(PVector p)
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;その点がSphere内に存在するときtrueを返します。</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">float</font></td>
+	<td><b>getR</b>()
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sphereの半径を返します。ellipseで描画する際は描画時は2倍して直径にして御利用ください。</td>
+	</tr>
+	<tr bgcolor="white">
+	<td align="right" valign="top" width="1%"><font size="-1">PVector</font></td>
+	<td><b>getVelocity</b>()
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;速度を返します。(アドレス渡しではない。)</td>
+	</tr>
+	</tbody></table>
+</body>
+</html>
